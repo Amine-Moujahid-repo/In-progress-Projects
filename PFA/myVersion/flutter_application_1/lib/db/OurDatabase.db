@@ -1,0 +1,186 @@
+CREATE TABLE Contact (
+  _id INT PRIMARY KEY,
+  idadress VARCHAR(50),
+  fax BIGINT,
+  mail VARCHAR(100),
+  fix VARCHAR(50),
+  phone VARCHAR(50)
+);
+INSERT INTO Contact (_id, idadress, fax, mail, fix, phone) VALUES
+(123, '98765AB', 123456789, 'contact123@example.com', '0123456789', '0678901234'),
+(132, '90123ST', 123456789, 'contact132@example.com', '0123456789', '0678901234'),
+(133, '01234UV', 123456789, 'contact133@example.com', '0123456789', '0678901234'),
+(138, '56789EF', 123456789, 'contact138@example.com', '0123456789', '0678901234'),
+(139, '67890GH', 123456789, 'contact139@example.com', '0123456789', '0678901234'),
+(129, '67890MN', 123456789, 'contact129@example.com', '0123456789', '0678901234'),
+(142, '90123MN', 123456789, 'contact142@example.com', '0123456789', '0678901234'),
+(144, '12345QR', 123456789, 'contact144@example.com', '0123456789', '0678901234'),
+(131, '89012QR', 123456789, 'contact131@example.com', '0123456789', '0678901234'),
+(137, '45678CD', 123456789, 'contact137@example.com', '0123456789', '0678901234'),
+(141, '89012KL', 123456789, 'contact141@example.com', '0123456789', '0678901234'),
+(125, '23456EF', 123456789, 'contact125@example.com', '0123456789', '0678901234'),
+(124, '12345CD', 123456789, 'contact124@example.com', '0123456789', '0678901234'),
+(127, '45678IJ', 123456789, 'contact127@example.com', '0123456789', '0678901234'),
+(130, '78901OP', 123456789, 'contact130@example.com', '0123456789', '0678901234'),
+(134, '12345WX', 123456789, 'contact134@example.com', '0123456789', '0678901234'),
+(135, '23456YZ', 123456789, 'contact135@example.com', '0123456789', '0678901234'),
+(136, '34567AB', 123456789, 'contact136@example.com', '0123456789', '0678901234'),
+(140, '78901IJ', 123456789, 'contact140@example.com', '0123456789', '0678901234'),
+(143, '01234OP', 123456789, 'contact143@example.com', '0123456789', '0678901234');
+CREATE TABLE Compte (
+  _id INT PRIMARY KEY,
+  login VARCHAR(50),
+  password VARCHAR(50)
+);
+INSERT INTO Compte (_id, login, password) VALUES
+(1, 'client_1', '1234'),
+(2, 'client_2', '1111'),
+(3, 'client_3', '2222'),
+(4, 'client_4', '4444');
+CREATE TABLE Manager (
+  _id VARCHAR(7) PRIMARY KEY,
+  Idcontact INT,
+  Nom VARCHAR(50),
+  Prenom VARCHAR(50)
+);
+INSERT INTO Manager (_id, Idcontact, Nom, Prenom) VALUES
+('M000001', 145, 'Doe', 'John');
+
+CREATE TABLE Employees (
+  _id INT PRIMARY KEY,
+  certificat VARCHAR(50),
+  nom VARCHAR(50),
+  prenom VARCHAR(50),
+  id_contact INT,
+  typeEmployee VARCHAR(50),
+  FOREIGN KEY (id_contact) REFERENCES Contact(_id)
+);
+INSERT INTO Employees (_id, certificat, nom, prenom, id_contact, typeEmployee) VALUES
+(8, 'pharmacie', 'Fournier', 'Maxime', 130, 'Collecteur'),
+(3, 'medicaux', 'Garcia', 'Maria', 125, 'Collecteur'),
+(10, 'medicaux', 'Mercier', 'Nicolas', 132, 'Collecteur'),
+(14, 'pharmacie', 'Lacroix', 'Laura', 136, 'Collecteur'),
+(4, 'infectieux', 'Dubois', 'Thomas', 126, 'Collecteur'),
+(6, 'sytotoxique', 'Lefevre', 'Julie', 128, 'Collecteur'),
+(12, 'chimie', 'Renaud', 'Antoine', 134, 'Collecteur'),
+(17, 'laboratoire', 'Barbier', 'Luc', 139, 'Chauffeur'),
+(18, 'medicaux', 'Gauthier', 'Marie', 140, 'Chauffeur'),
+(1, 'pharmacie', 'Dupont', 'Pierre', 123, 'Chauffeur'),
+(2, 'laboratoire', 'Martin', 'Sophie', 124, 'Collecteur'),
+(5, 'chimie', 'Moreau', 'Lucie', 127, 'Collecteur'),
+(9, 'laboratoire', 'Berger', 'Sarah', 131, 'Collecteur'),
+(15, 'anatomie', 'Girard', 'Julien', 137, 'Collecteur'),
+(19, 'anatomie', 'Rolland', 'Thomas', 141, 'Collecteur'),
+(20, 'chimie', 'Leroy', 'Amandine', 142, 'Chauffeur'),
+(7, 'anatomie', 'Roux', 'Emilie', 129, 'Chauffeur'),
+(11, 'infectieux', 'Moulin', 'Laure', 133, 'Collecteur'),
+(13, 'sytotoxique', 'Blanchard', 'Camille', 135, 'Collecteur'),
+(16, 'pharmacie', 'Lecomte', 'Emma', 138, 'Collecteur');
+
+CREATE TABLE Camion (
+  _id VARCHAR(10) PRIMARY KEY,
+  idEmploye INT,
+  FOREIGN KEY (idEmploye) REFERENCES Employe(idEmploye)
+);
+INSERT INTO Camion (_id, idEmploye) VALUES
+('KL2345', 21),
+('AB1234', 1),
+('CD5678', 7),
+('GH3456', 18),
+('IJ7890', 20),
+('EF9012', 17);
+
+CREATE TABLE Adresse (
+  _id VARCHAR(10) PRIMARY KEY,
+  numero INT,
+  region VARCHAR(50),
+  rue VARCHAR(50),
+  ville VARCHAR(50)
+);
+INSERT INTO Adresse (_id, numero, region, rue, ville) VALUES
+('34567GH', 4, 'Casablanca-Settat', 'Rue Ibn Battouta', 'Casablanca'),
+('98765AB', 1, 'Rabat-Salé-Kénitra', 'Rue des Orangers', 'Casablanca'),
+('56789KL', 6, 'Souss-Massa', 'Rue Ibn Rochd', 'Casablanca'),
+('67890MN', 7, 'Béni Mellal-Khénifra', 'Rue des Pommiers', 'Casablanca'),
+('90123ST', 10, 'Guelmim-Oued Noun', 'Rue des Champs', 'Casablanca'),
+('45678CD', 14, 'Fès-Meknès', 'Rue des Acacias', 'Casablanca'),
+('56789EF', 15, 'Tanger-Tétouan-Al Hoceima', 'Rue des Bougainvilliers', 'Casablanca'),
+('45678IJ', 5, 'Oriental', 'Rue des Jasmins', 'Casablanca'),
+('01234UV', 11, 'Laâyoune-Sakia El Hamra', 'Rue des Lilas', 'Casablanca'),
+('12345WX', 12, 'Dakhla-Oued Ed-Dahab', 'Rue des Violettes', 'Casablanca'),
+('78901IJ', 17, 'Oriental', 'Rue des Iris', 'Casablanca'),
+('90123MN', 19, 'Béni Mellal-Khénifra', 'Rue des Pensées', 'Casablanca'),
+('01234OP', 20, 'Drâa-Tafilalet', 'Rue des Lilas', 'Casablanca'),
+('12345QR', 21, 'Marrakech-Safi', 'Rue des Coquelicots', 'Casablanca'),
+('89012KL', 18, 'Souss-Massa', 'Rue des Narcisses', 'Casablanca'),
+('12345CD', 2, 'Fès-Meknès', 'Rue Ibn Khaldoun', 'Casablanca'),
+('23456EF', 3, 'Tanger-Tétouan-Al Hoceima', 'Rue des Oliviers', 'Casablanca'),
+('78901OP', 8, 'Drâa-Tafilalet', 'Rue Al Massira', 'Casablanca'),
+('89012QR', 9, 'Marrakech-Safi', 'Rue des Roses', 'Casablanca'),
+('23456YZ', 13, 'Rabat-Salé-Kénitra', 'Rue des Tilleuls', 'Casablanca');
+
+CREATE TABLE Client (
+  _id INT PRIMARY KEY,
+  date DATE,
+  Domaine VARCHAR(50),
+  NomClient VARCHAR(50),
+  PrenomClient VARCHAR(50),
+  NomEntreprise VARCHAR(100),
+  idIntervention INT,
+  idContact INT,
+  idFacture INT,
+  FOREIGN KEY (idContact) REFERENCES Contact(idContact),
+  FOREIGN KEY (idFacture) REFERENCES Facture(idFacture)
+);
+
+CREATE TABLE Intervention (
+  _id INT PRIMARY KEY,
+  date DATE,
+  quantite DECIMAL(10,3),
+  idManager VARCHAR(10),
+  idClient INT,
+  FOREIGN KEY (idClient) REFERENCES Clients(_id)
+);
+INSERT INTO Intervention (_id, date, quantite, idManager, idClient) VALUES
+(10010007, '2021-03-27', 90.123, 'M000001', 90123),
+(10010003, '2020-05-30', 334.45, 'M000001', 33445),
+(10010013, '2022-06-24', 34.567, 'M000001', 34567),
+(10010015, '2022-11-23', 12000.345, 'M000001', 12345),
+(10010008, '2021-06-11', 89.012, 'M000001', 89012),
+(10010010, '2021-11-10', 67.89, 'M000001', 67890),
+(10010006, '2021-01-12', 112.23, 'M000001', 11223),
+(10010001, '2020-01-01', 556.67, 'M000001', 55667),
+(10010009, '2021-08-26', 78.901, 'M000001', 78901),
+(10010016, '2023-04-17', 556.67, 'M000001', 55667),
+(10010002, '2020-03-15', 445.56, 'M000001', 44556),
+(10010004, '2020-08-14', 223.34, 'M000001', 22334),
+(10010005, '2020-10-29', 223.35, 'M000001', 22335),
+(10010011, '2022-01-24', 56.789, 'M000001', 56789),
+(10010012, '2022-04-09', 45.678, 'M000001', 45678);
+
+CREATE TABLE Facture (
+  _id INT PRIMARY KEY,
+  date DATE,
+  prix DECIMAL(10,2),
+  TypeDechets VARCHAR(50),
+  idClient INT,
+  idIntervention INT,
+  FOREIGN KEY (idClient) REFERENCES Clients(_id),
+  FOREIGN KEY (idIntervention) REFERENCES Intervention(_id)
+);
+INSERT INTO Facture (_id, date, prix, TypeDechets, idClient, idIntervention) VALUES
+(10000005, '2023-03-15', 0, 'Chimique', 56789, 10010005),
+(10000011, '2022-02-10', 0, 'Infecieux', 22334, 10010011),
+(10000013, '2020-10-19', 0, 'Chimique', 33445, 10010012),
+(10000001, '2020-04-17', 0, 'Pharmacie', 12345, 10010001),
+(10000002, '2021-04-17', 0, 'Laboratoire', 23456, 10010002),
+(10000006, '2023-01-05', 0, 'Anatomique', 67890, 10010006),
+(10000007, '2020-05-17', 0, 'Cytotoxique', 78901, 10010007),
+(10000009, '2022-08-13', 0, 'Laboratoire', 90123, 10010009),
+(10000012, '2023-04-01', 0, 'Infecieux', 22335, 10010012),
+(10000003, '2023-01-17', 0, 'Medicale', 34567, 10010003),
+(10000008, '2022-09-17', 0, 'Pharmacie', 89012, 10010008),
+(10000015, '2023-02-22', 0, 'Cytotoxique', 55667, 10010014),
+(10000004, '2023-2-28', 0, 'Infecieux', 45678, 10010004),
+(10000010, '2022-07-12', 0, 'Medicale', 11223, 10010010),
+(10000014, '2023-01-20', 0, 'Anatomique', 44556, 10010013);

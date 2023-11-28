@@ -1,0 +1,3 @@
+MaterialApp : is for the theme of the app (to be green or blue or red ...   )
+
+statefullwidget is used when you have something that need to be reloaded in the page

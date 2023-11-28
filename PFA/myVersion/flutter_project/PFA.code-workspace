@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../PFA_flutter/PFA"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}
